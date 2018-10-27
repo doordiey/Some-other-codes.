@@ -41,8 +41,8 @@ int main()
                 printf("%d",a);
         }
     }
-
 }
+
 ```
 
 书中给出代码：(floor(x)函数返回不超过x的最大整数。)
@@ -492,8 +492,25 @@ Case 1:0.1667
 
 我的代码： 
 
-```
+```c
+#include <stdio.h>
+#include <math.h>
 
+int main() {
+    while (1){
+        int a,b,h,e;
+        double d;
+        scanf("%d%d%d",&a,&b,&h);
+        if(a==0&&b==0&&h==0)
+        {
+            break;
+        }
+        d = a*1.0/b;
+        e = (int)(d * pow(10,h) +0.5);
+        printf("0.%d",e);
+
+    }
+}
 ```
 
 ### 习题2-6 排序
@@ -502,10 +519,39 @@ Case 1:0.1667
 用1，2，3，…，9组成3个三位数abc,def和ghi，每个数字恰好使用一次，要求abc:def:ghi=1：2：3。按照“abc def ghi”的格式输出所有解，每行一个解。提示：不必太动脑筋。
 ```
 
-我的代码：
+我的代码：(关键9个数和不变，乘积不变。)
 
-```
+```c
+#include <stdio.h>
 
+void result(int num, int &add, int &mul);
+int main()
+{
+    int i, j, k;
+    int add, mul;
+    for(i = 123; i <330; i++)
+    {
+        j = i * 2;
+        k = i * 3;
+        add = 0;
+        mul = 1;
+        result(i, add, mul);
+        result(j, add, mul);
+        result(k, add, mul);
+        if(add == 45 && mul == 362880)
+            printf("%d %d %d\n", i, j, k);
+    }
+    return 0;
+}
+void result(int num, int &add, int &mul)
+{
+    int bai,shi,ge;
+    bai = num / 100;
+    shi = num / 10 % 10;
+    ge = num % 10;
+    add = add + bai + shi + ge;
+    mul = mul * bai * shi * ge;
+}
 ```
 
 
