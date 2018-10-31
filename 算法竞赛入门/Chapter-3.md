@@ -1,4 +1,4 @@
-# Chapter-3：数组和字符串
+#  Chapter-3：数组和字符串
 
 ## 3-1 数组
 
@@ -283,6 +283,38 @@ The number of solutions = 1
 我的代码：
 
 ```
+#include <stdio.h>
+#include <string.h>
 
+int main()
+{
+    int i,j,o,k,m,n;
+    int is,what;
+    char a[10];
+    char b[20];
+    i = 0;
+    what = 0;
+    scanf("%s",a);
+    for(i=100;i<=999;i++)
+    {
+        for(int j=10;j<=99;j++)
+        {
+            is = 1;
+            k = j * i;
+            m = (j % 10) * i;
+            n = (j / 10) * i;
+            sprintf(b,"%d%d%d%d%d",i,j,m,n,k);
+            for(o=0;o<strlen(a);o++)
+            {
+                if(strchr(b,a[i]) == NULL) is = 0;
+            }
+            if(is)
+            {
+                printf("<%d>\n",++what);
+                printf("%5d\n×%4d\n-----\n%5d\n%4d\n-----\n%5d\n\n",i,j,m,n,k);
+            }
+        }
+    }
+}
 ```
 
